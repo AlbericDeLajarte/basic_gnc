@@ -1,3 +1,21 @@
+/*
+* Node to send control commands to the rocket engine. 
+* Can also be used by the simulation for SIL and PIL tests.
+*
+* Inputs: 
+*   - Finite state machine from the basic_gnc package:	\gnc_fsm_pub
+*   - Estimated state from basic_navigation:		        \kalman_rocket_state
+*
+* Parameters:
+*   - Rocket model: 		  /config/rocket_parameters.yaml
+*   - Environment model: 	/config/environment_parameters.yaml
+#	  - P gain: 		        PD_control
+*
+* Outputs:
+*   - Commanded 3D force and torque for the rocket engine:  \control_pub
+*
+*/
+
 #include "ros/ros.h"
 
 #include <ros/package.h>
@@ -60,7 +78,7 @@ int main(int argc, char **argv)
 	// Create control publisher
 	ros::Publisher control_pub = n.advertise<real_time_simulator::Control>("control_pub", 10);
 
-	// Subscribe to state message from simulation
+	// Subscribe to state message from basic_gnc
   ros::Subscriber rocket_state_sub = n.subscribe("kalman_rocket_state", 100, rocket_stateCallback);
 
   // Subscribe to fsm and time from time_keeper

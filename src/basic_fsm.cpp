@@ -1,3 +1,19 @@
+/*
+* Node to synchronize the GNC algorithms by estimating the current state of the rocket
+* (Idle, Rail, Launch, Coast)
+*
+* Inputs: 
+*   - Sensor data (IMU and barometer):					\sensor_pub
+*   - Estimated state from basic_navigation:		    \kalman_rocket_state
+*
+* Parameters:
+*   - Threshold for rocket ignition detection (Rail phase): in FSM_thread
+*
+* Outputs:
+*   - Estimated finite state machine from flight data:	\gnc_fsm_pub
+*
+*/
+
 #include "ros/ros.h"
 #include "real_time_simulator/FSM.h"
 #include "real_time_simulator/State.h"

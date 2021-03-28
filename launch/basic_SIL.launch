@@ -1,3 +1,4 @@
+<!-- Launch file to activate real-time simulator and connect to it the basic_gnc algorithms-->
 <launch>
 
   <group ns="rocket">

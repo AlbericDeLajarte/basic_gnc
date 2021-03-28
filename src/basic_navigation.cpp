@@ -1,3 +1,22 @@
+/*
+* Node to estimate the rocket full state (position, velocity, quaternion, angular rate and mass) 
+* from the sensor data and commanded thrust and torque of the rocket engine
+*
+* Inputs: 
+*   - Finite state machine from the basic_gnc package:	\gnc_fsm_pub
+*   - 3D force and torque from the rocket engine:		\control_pub
+*   - Sensor data (IMU and barometer):					\sensor_pub
+*
+* Parameters:
+*   - Rocket model: 		/config/rocket_parameters.yaml
+*   - Environment model: 	/config/environment_parameters.yaml
+#	- Kalman variance: 		class KF
+*
+* Outputs:
+*   - Complete estimated state : \kalman_rocket_state
+*
+*/
+
 #include "ros/ros.h"
 
 #include "real_time_simulator/FSM.h"
